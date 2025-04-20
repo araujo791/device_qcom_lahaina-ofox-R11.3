@@ -30,3 +30,4 @@ set +a
 
 # Call other setup scripts
 bash "${VENDORSETUP_PATH}/twrp.dependencies.sh"
+#OF_MAINTAINER_AVATAR="misc/avatar.jpg"

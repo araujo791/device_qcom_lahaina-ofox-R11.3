@@ -59,4 +59,4 @@ repo_sync() {
 }
 
 # Initialize
-#repo_sync "kernel/oneplus/sm8350" "https://github.com/araujo791/kernel_oneplus_sm8350_rasho" "main"
+# repo_sync "kernel/oneplus/sm8350" "https://github.com/araujo791/kernel_oneplus_sm8350_rasho" "main"
