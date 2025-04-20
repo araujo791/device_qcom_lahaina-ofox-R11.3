@@ -7,7 +7,7 @@
  LC_ALL="C"
 
 # Maintaining Info
- OF_MAINTAINER=Covenant Fuchsia
+ OF_MAINTAINER=Covenant_Fuchsia
  FOX_MAINTAINER_PATCH_VERSION=$(date +"%Y%m%d")
  FOX_BUILD_TYPE=Unofficial_Covenant_Fuchsia
 
