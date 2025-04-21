@@ -11,7 +11,6 @@ ro.adb.secure=0
 # Reset allocatable space
 #ro.dynamic.full_size=6438256640
 
-
 # Storage
 external_storage.projid.enabled=1
 external_storage.casefold.enabled=1
