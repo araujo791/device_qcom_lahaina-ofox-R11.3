@@ -20,7 +20,7 @@
  # Comentado, ajustado para boot abaixo
 
 # Magisk
- FOX_USE_SPECIFIC_MAGISK_ZIP=~/Magisk/Magisk-v26.3.zip
+ FOX_USE_SPECIFIC_MAGISK_ZIP=~/misc/Magisk-v28.1.zip
  # Mantido, mas considere atualizar para v28.1 (R11.3)
 
 # Functions and Binaries
