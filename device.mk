@@ -14,36 +14,29 @@
 # limitations under the License.
 #
 
-# Configure base.mk
+# Configurações base do Android
 $(call inherit-product, $(SRC_TARGET_DIR)/product/base.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit_only.mk)  # Realme GT2 é 64-bit
 
-# Configure core_64_bit_only.mk
-$(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit_only.mk)
-
-# Configure gsi_keys.mk
+# Chaves GSI para boot verificado (opcional, remova se não necessário)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/gsi_keys.mk)
 
-# Configure Virtual A/B
-# ifdef TWRP_BUILD_BOOT_IMAGE
+# Suporte a partições A/B com vendor ramdisk
 $(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota/launch_with_vendor_ramdisk.mk)
-# endif
 
-# Configure SDCard replacement functionality
+# Suporte a armazenamento emulado
 $(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
 
-# Configure twrp
+# Configurações do TWRP
 $(call inherit-product, vendor/twrp/config/common.mk)
 
-# SHIPPING API
+# Níveis de API (baseado em Android 12, ajuste se necessário)
 PRODUCT_SHIPPING_API_LEVEL := 30
-
-# VNDK API
 PRODUCT_TARGET_VNDK_VERSION := 31
 
-# A/B support
+# Suporte a partições A/B
 AB_OTA_UPDATER := true
-
-AB_OTA_PARTITIONS += \
+AB_OTA_PARTITIONS := \
     boot \
     dtbo \
     product \
@@ -55,52 +48,32 @@ AB_OTA_PARTITIONS += \
     vendor \
     vendor_boot
 
-PRODUCT_PACKAGES += \
-    otapreopt_script \
-    update_engine \
-    update_engine_sideload \
-    update_verifier \
-    checkpoint_gc
-
-AB_OTA_POSTINSTALL_CONFIG += \
-    RUN_POSTINSTALL_system=true \
-    POSTINSTALL_PATH_system=system/bin/otapreopt_script \
-    FILESYSTEM_TYPE_system=erofs \
-    POSTINSTALL_OPTIONAL_system=true
-
-AB_OTA_POSTINSTALL_CONFIG += \
-    RUN_POSTINSTALL_vendor=true \
-    POSTINSTALL_PATH_vendor=bin/checkpoint_gc \
-    FILESYSTEM_TYPE_vendor=erofs \
-    POSTINSTALL_OPTIONAL_vendor=true
-
+# Pacotes necessários para A/B e recovery
 PRODUCT_PACKAGES += \
     bootctrl.lahaina.recovery \
     android.hardware.boot@1.1-impl-qti.recovery \
-    bootctl
+    bootctl \
+    fastbootd \
+    android.hardware.fastboot@1.0-impl
 
-PRODUCT_HOST_PACKAGES += \
-    libandroidicu
+# Suporte a partições dinâmicas
+PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
-# dtb
+# Arquivos pré-construídos (DTB para Snapdragon 888)
 PRODUCT_COPY_FILES += \
     $(DEVICE_PATH)/prebuilt/lahaina/dtb.img:dtb.img
 
-# tzdata
+# Timezone data para TWRP
 PRODUCT_PACKAGES_ENG += \
     tzdata_twrp
 
-# fastbootd
-PRODUCT_PACKAGES += \
-    android.hardware.fastboot@1.0-impl-mock \
-    fastbootd
+# Firmware específico para lahaina
+TWRP_REQUIRED_MODULES += lahaina_firmware
 
-# Soong namespaces
+# Propriedade do dispositivo
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.twrp.device.name=lahaina
+
+# Namespaces para Soong
 PRODUCT_SOONG_NAMESPACES += \
     $(DEVICE_PATH)
-
-PRODUCT_USE_DYNAMIC_PARTITIONS := true
-
-# PRODUCT_RELEASE_NAME ro.twrp.device.name
-PRODUCT_PROPERTY_OVERRIDES += ro.twrp.device.name=lahaina
-TWRP_REQUIRED_MODULES += lahaina_firmware
