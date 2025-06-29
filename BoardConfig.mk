@@ -13,6 +13,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+# Este arquivo configura o TWRP baseado em AOSP para o Realme GT2
+# (codinome lahaina, Snapdragon 888).
 
 # Arquitetura para Realme GT2 (Snapdragon 888)
 TARGET_ARCH := arm64
