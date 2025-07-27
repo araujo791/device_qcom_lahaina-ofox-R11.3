@@ -13,20 +13,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-# Este arquivo configura pacotes e propriedades para o TWRP baseado em AOSP
-# para o Realme GT2 (codinome lahaina, Snapdragon 888).
 
-# Identificadores do dispositivo (Realme GT2)
-PRODUCT_DEVICE := lahaina
-PRODUCT_NAME := twrp_lahaina
-PRODUCT_BRAND := realme
-PRODUCT_MODEL := REALME_lahaina
-PRODUCT_MANUFACTURER := realme
-
-# Caminho para configurações específicas do dispositivo
-DEVICE_PATH := device/realme/lahaina
-
-# Configurações base do Android (AOSP)
+# Configurações base do Android
 $(call inherit-product, $(SRC_TARGET_DIR)/product/base.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit_only.mk)  # Realme GT2 é 64-bit
 
