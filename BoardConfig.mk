@@ -191,7 +191,7 @@ TW_INPUT_BLACKLIST := "hbtp_vm"
 TW_LOAD_VENDOR_MODULES := "adsp_loader_dlkm.ko snd_event_dlkm.ko msm_drm.ko q6_dlkm.ko q6_notifier_dlkm.ko q6_pdr_dlkm.ko"
 TARGET_RECOVERY_QCOM_RTC_FIX := true
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /config/usb_gadget/g1/functions/mass_storage.0/lun.%d/file
-TW_CUSTOM_CPU_TEMP_PATH := "/sys/devices/virtual/thermal/thermal_zone50/temp"
+TW_CUSTOM_CPU_TEMP_PATH := "/sys/devices/virtual/thermal/thermal_zone1/temp"
 TW_BRIGHTNESS_PATH := "/sys/class/backlight/panel0-backlight/brightness"
 TW_QCOM_ATS_OFFSET := 1621580431500
 TW_DEFAULT_BRIGHTNESS := 1024
@@ -204,7 +204,7 @@ TW_CUSTOM_BATTERY_POS := 740
 TW_CUSTOM_CLOCK_POS := 500
 TW_CUSTOM_CPU_POS := 180
 TW_FRAMERATE := 60
-TW_NO_CPU_TEMP := true
+TW_NO_CPU_TEMP := false
 TW_HAS_EDL_MODE := true
 TW_Y_OFFSET := 104
 TW_H_OFFSET := -104
@@ -216,3 +216,7 @@ RECOVERY_INSTALLER_PATH := device/qcom/lahaina/installer
 
 # Permitir dependências ausentes (para compilação)
 ALLOW_MISSING_DEPENDENCIES := true
+
+# Adicione esta flag para garantir que o assert use o nome correto
+TARGET_OTA_ASSERT_DEVICE := RE58B2L1,lahaina,RMX3310,RMX3311,RMX3312
+
