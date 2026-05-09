@@ -64,11 +64,14 @@ on boot
     setprop sys.usb.config adb
 
 on property:twrp.modules.loaded=true
-    # Load ADSP firmware for PMIC
-    wait /sys/kernel/boot_adsp/boot
+    # Aguarda adsp_loader estar pronto antes de bootar o ADSP
+    wait /sys/kernel/boot_adsp/boot 10
     write /sys/kernel/boot_adsp/boot 1
-    wait /sys/class/power_supply/battery
+    # Aguarda bateria aparecer após ADSP subir
+    wait /sys/class/power_supply/battery 10
     start health-hal-2-1
+    # Inicia serviço de vibração
+    start vendor.vibrator-default
 
 on property:vendor.sys.listeners.registered=true
     start keymaster-4-1
